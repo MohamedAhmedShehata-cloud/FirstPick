@@ -1,12 +1,12 @@
 import React from "react";
-import { getWhatsAppGeneralUrl } from "@/data/watches";
+import { getWhatsAppGeneralUrl } from "@/config/site";
 
 export function FeaturesSection() {
   const features = [
     {
-      title: "معاينة وفحص حر قبل الدفع",
+      title: "معاينة وفحص كامل قبل الدفع",
       description:
-        "ثقتك أولويتنا. افتح الطرد بنفسك مع مندوب الشحن وافحص الساعة وتفاصيلها على الطبيعة قبل سداد أي مبلغ.",
+        "ثقتك أولويتنا المطلقة. افتح الطرد بنفسك مع مندوب الشحن، وافحص ساعتك وتفاصيلها وتأكد منها قبل سداد أي مبلغ.",
       badge: "أمان ١٠٠٪",
       icon: (
         <svg
@@ -24,10 +24,10 @@ export function FeaturesSection() {
       ),
     },
     {
-      title: "تصوير واقعي على الإيد",
+      title: "خامات وحرفية عالية الجودة",
       description:
-        "بدون ريندرات ثلاثية الأبعاد أو تعديلات مضللة. كل ساعة مصورة في بيئة إضاءة حقيقية وعلى الإيد مباشرة لترى الخامة واللمعان الفعلي.",
-      badge: "شفافية مطلقة",
+        "هيكل مصنع من ستانلس ستيل 316L المصمت المقاوم للتآكل، زجاج هاردليكس مقوى مضاد للخدش، وماكينات حركة يابانية دقيقة تعتمد عليها.",
+      badge: "جودة معتمدة",
       icon: (
         <svg
           className="w-6 h-6 text-navy"
@@ -38,39 +38,16 @@ export function FeaturesSection() {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-          <circle cx="12" cy="13" r="4" />
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
         </svg>
       ),
     },
     {
-      title: "علبة تقديم فاخرة (هدية جاهزة)",
+      title: "التوصيل يتم خلال أسبوع",
       description:
-        "تصلك كل ساعة في علبة هارد بوكس أنيقة ومبطنة، مناسبة كهدية تليق بالمناسبات أو لاقتنائك الشخصي الفاخر.",
-      badge: "تغليف مميز",
-      icon: (
-        <svg
-          className="w-6 h-6 text-navy"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M20 12v10H4V12" />
-          <path d="M2 7h20v5H2z" />
-          <path d="M12 22V7" />
-          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
-          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
-        </svg>
-      ),
-    },
-    {
-      title: "شحن سريع لكافة محافظات مصر",
-      description:
-        "توصيل آمن وباب البيت خلال ٢ إلى ٤ أيام عمل لجميع مدن وقرى ومحافظات جمهورية مصر العربية.",
-      badge: "توصيل من الباب للباب",
+        "خدمة شحن سريعة وآمنة تصل لباب بيتك خلال أسبوع واحد فقط لجميع مدن وقرى ومحافظات جمهورية مصر العربية.",
+      badge: "خلال أسبوع",
       icon: (
         <svg
           className="w-6 h-6 text-navy"
@@ -88,6 +65,25 @@ export function FeaturesSection() {
         </svg>
       ),
     },
+    {
+      title: "قيمة استثنائية بدون وسيط",
+      description:
+        "نستورد موديلاتنا مباشرة من أفضل مصانع الساعات العالمية لنقدم لك مظهر وأناقة الساعات الفاخرة بأسعار تنافسية غير مسبوقة.",
+      badge: "سعر منافس",
+      icon: (
+        <svg
+          className="w-6 h-6 text-navy"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      ),
+    },
   ];
 
   return (
@@ -95,14 +91,14 @@ export function FeaturesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="text-xs font-bold text-navy bg-cream-dark px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">
-            وعد First Pick للعميل
+            معايير First Pick
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight mb-4">
             لماذا يختار عملاؤنا الشراء من First Pick؟
           </h2>
           <p className="text-sm sm:text-base text-warm-gray leading-relaxed">
             جمعنا بين أناقة ومظهر الساعات العالمية الفاخرة، والأسعار
-            التنافسية الذكية في مصر مع تجربة شراء آمنة تماماً.
+            التنافسية الذكية في مصر مع تجربة شراء آمنة ومضمونة تماماً.
           </p>
         </div>
 
@@ -117,7 +113,7 @@ export function FeaturesSection() {
                   <div className="w-12 h-12 rounded-xl bg-cream flex items-center justify-center border border-cream-dark">
                     {item.icon}
                   </div>
-                  <span className="text-[11px] font-bold text-navy bg-cream/70 px-2 py-0.5 rounded-full border border-gray-light">
+                  <span className="text-[11px] font-bold text-navy bg-cream/70 px-2.5 py-0.5 rounded-full border border-gray-light">
                     {item.badge}
                   </span>
                 </div>
@@ -140,10 +136,10 @@ export function FeaturesSection() {
               جاهز لاختيار ساعتك القادمة؟
             </h3>
             <p className="text-sm sm:text-base text-cream/80 mb-8 leading-relaxed">
-              تواصل معنا مباشرة عبر الواتساب لاختيار ساعتك وتأكيد العنوان وموعد الاستلام، وادفع فقط بعد ما تعاين قطعتك وتتأكد من كل تفصيلة فيها.
+              تواصل معنا مباشرة عبر الواتساب لتأكيد طلبك وتفاصيل الشحن (المقرر خلال أسبوع)، وسدد فقط بعد ما تعاين ساعتك وتتأكد من كل تفصيلة فيها مع مندوب التوصيل.
             </p>
             <a
-              href={getWhatsAppGeneralUrl("مرحباً First Pick، أود حجز ساعة مع خدمة المعاينة قبل الاستلام.")}
+              href={getWhatsAppGeneralUrl("مرحباً First Pick، أود حجز ساعة مع خدمة المعاينة قبل الاستلام والشحن خلال أسبوع.")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-cream text-navy font-extrabold hover:bg-white active:scale-[0.98] transition-all shadow-lg"
@@ -161,4 +157,3 @@ export function FeaturesSection() {
 }
 
 export default FeaturesSection;
-

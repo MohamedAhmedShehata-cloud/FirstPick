@@ -1,5 +1,6 @@
 import React from "react";
-import { getWhatsAppGeneralUrl } from "@/data/watches";
+import Link from "next/link";
+import { getWhatsAppGeneralUrl } from "@/config/site";
 
 export function HeroSection() {
   return (
@@ -9,14 +10,10 @@ export function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-          {/* Top Pill / Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cream-dark/60 border border-warm-gray/30 text-navy text-xs sm:text-sm font-medium mb-6 animate-fade-in">
-            <span className="w-1.5 h-1.5 rounded-full bg-navy" />
-            <span>كولكشن الساعات الفاخرة • السوق المصري</span>
-          </div>
+      
 
           {/* Main Title */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-navy tracking-tight leading-[1.25] sm:leading-[1.2] mb-6 animate-fade-up">
+          <h1 className="text-3xl sm:text-5xl lg:text-5xl font-extrabold text-navy tracking-tight leading-[1.25] sm:leading-[1.2] mb-6 animate-fade-up">
             الفخامة التي تليق بمعصمك،
             <span className="block text-navy-light mt-1 font-semibold">
               بقيمة وسعر استثنائي.
@@ -25,16 +22,15 @@ export function HeroSection() {
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-warm-gray max-w-2xl font-normal leading-relaxed mb-10 animate-fade-up animate-delay-100">
-            مجموعة مختارة بعناية من أرقى الساعات الكلاسيكية والرياضية بتصوير
-            طبيعي واقعي على الطبيعة بدون فوتوشوب مضلل، مع ميزة{" "}
+            مجموعة منتقاة بعناية من أرقى الساعات الكلاسيكية والرياضية تجمع بين الحرفية العالية والتصميم الفاخر، مع ميزة{" "}
             <span className="text-navy font-bold underline decoration-warm-gray/40 underline-offset-4">
-              المعاينة الكاملة قبل الدفع والاستلام.
+              المعاينة والفحص الكامل قبل الدفع، والتوصيل خلال أسبوع.
             </span>
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto animate-fade-up animate-delay-200">
-            <a
+            <Link
               href="#catalog"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-navy text-cream font-bold text-base hover:bg-navy-dark active:scale-[0.98] transition-all shadow-md hover:shadow-lg"
             >
@@ -50,7 +46,7 @@ export function HeroSection() {
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
 
             <a
               href={getWhatsAppGeneralUrl()}
@@ -70,15 +66,6 @@ export function HeroSection() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-14 w-full pt-10 border-t border-cream-dark">
             <div className="flex flex-col items-center text-center p-3">
               <span className="text-xl sm:text-2xl font-black text-navy mb-1">
-                ١٠٠٪
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-warm-gray">
-                تصوير واقعي على الإيد
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-3">
-              <span className="text-xl sm:text-2xl font-black text-navy mb-1">
                 فحص مجاني
               </span>
               <span className="text-xs sm:text-sm font-semibold text-warm-gray">
@@ -88,7 +75,16 @@ export function HeroSection() {
 
             <div className="flex flex-col items-center text-center p-3">
               <span className="text-xl sm:text-2xl font-black text-navy mb-1">
-                ٢ - ٤ أيام
+                خامات فاخرة
+              </span>
+              <span className="text-xs sm:text-sm font-semibold text-warm-gray">
+                ستانلس ستيل وزجاج مقوى
+              </span>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-3">
+              <span className="text-xl sm:text-2xl font-black text-navy mb-1">
+                خلال أسبوع
               </span>
               <span className="text-xs sm:text-sm font-semibold text-warm-gray">
                 توصيل لكافة المحافظات
@@ -97,10 +93,10 @@ export function HeroSection() {
 
             <div className="flex flex-col items-center text-center p-3">
               <span className="text-xl sm:text-2xl font-black text-navy mb-1">
-                علبة فاخرة
+                أسعار مباشرة
               </span>
               <span className="text-xs sm:text-sm font-semibold text-warm-gray">
-                تغليف هارد بوكس شيك
+                قيمة استثنائية بدون وسيط
               </span>
             </div>
           </div>
@@ -111,4 +107,3 @@ export function HeroSection() {
 }
 
 export default HeroSection;
-

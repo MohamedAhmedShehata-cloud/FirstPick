@@ -1,0 +1,12 @@
+export { AnnouncementBar } from "./announcement-bar";
+export { BrandLogo } from "./brand-logo";
+export { Navbar } from "./navbar";
+export { HeroSection } from "./hero-section";
+export { WatchCatalog } from "./watch-catalog";
+export { WatchCard } from "./watch-card";
+export { WatchImage } from "./watch-image";
+export { WatchDetailsView } from "./watch-details-view";
+export { FeaturesSection } from "./features-section";
+export { Footer } from "./footer";
+export { FloatingWhatsApp } from "./floating-whatsapp";
+export { SplashScreen } from "./splash-screen";

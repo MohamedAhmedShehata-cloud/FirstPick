@@ -1,69 +1,57 @@
-export interface Watch {
-  id: string;
-  code: string;
-  name: string;
-  price: number;
-  originalPrice: number;
-  category: "classic" | "sport" | "luxury";
-  strapType: "steel" | "leather" | "rubber";
-  dialColor: string;
-  image: string;
-  badge?: string;
-  description: string;
-  specs: {
-    movement: string;
-    caseSize: string;
-    caseMaterial: string;
-    glass: string;
-    waterResistance: string;
-    strap: string;
-  };
-}
+import { Watch } from "@/types/watch";
+import {
+  siteConfig,
+  getWhatsAppOrderUrl,
+  getWhatsAppGeneralUrl,
+} from "@/config/site";
 
-export const WHATSAPP_NUMBER = "201062081956";
-export const BRAND_PHONE_DISPLAY = "+20 10 6208 1956";
-export const BRAND_INSTAGRAM = "firstpick.eg";
-export const BRAND_TIKTOK = "first.pick13";
+// Re-export for backward compatibility
+export type { Watch, WatchColorVariant, WatchCategory, WatchStrapType } from "@/types/watch";
+export {
+  siteConfig,
+  getWhatsAppOrderUrl,
+  getWhatsAppGeneralUrl,
+};
 
-/**
- * Generate a direct WhatsApp link with a pre-filled luxury order inquiry
- */
-export function getWhatsAppOrderUrl(watch: Watch): string {
-  const message = `مرحباً First Pick،
-أود طلب واستفسار عن ساعة:
-- الموديل: ${watch.name}
-- الكود: ${watch.code}
-- السعر: ${watch.price.toLocaleString("ar-EG")} ج.م
-
-برجاء تأكيد التوافر وتفاصيل شحن الطلب مع إمكانية المعاينة قبل الاستلام. شكراً!`;
-
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
-
-/**
- * General customer care WhatsApp link
- */
-export function getWhatsAppGeneralUrl(customMessage?: string): string {
-  const message =
-    customMessage ||
-    `مرحباً First Pick، أود الاستفسار عن كولكشن الساعات المتاحة وعروض المعاينة قبل الاستلام.`;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
+export const WHATSAPP_NUMBER = siteConfig.whatsappNumber;
+export const BRAND_PHONE_DISPLAY = siteConfig.phoneDisplay;
+export const BRAND_INSTAGRAM = siteConfig.instagram;
+export const BRAND_TIKTOK = siteConfig.tiktok;
 
 export const WATCHES_DATA: Watch[] = [
   {
     id: "fp-01",
     code: "FP-01",
     name: "رويال برستيج بلاك",
+    brand: "أوديمار بيغيه",
     price: 1450,
     originalPrice: 2150,
+    isAvailable: true,
     category: "luxury",
     strapType: "steel",
-    dialColor: "أسود ملكي",
-    image: "/watches/watch-1.jpg",
     badge: "الأكثر طلباً",
     description:
-      "تصميم فخم مستوحى من أعرق دور الساعات السويسرية، إطار مسدس الأضلاع مع مينا هندسية بارزة وسوار ستيل مصمت ثقيل.",
+      "تصميم فخم مستوحى من أعرق دور الساعات السويسرية، إطار مسدس الأضلاع مع مينا هندسية بارزة وسوار ستيل مصمت ثقيل ببريق استثنائي.",
+    colors: [
+      {
+        id: "black",
+        name: "أسود ملكي",
+        colorHex: "#18191E",
+        images: ["/watches/fp-01-black-1.jpg", "/watches/fp-01-black-2.jpg"],
+      },
+      {
+        id: "silver",
+        name: "فضي كلاسيكي",
+        colorHex: "#D7DAE0",
+        images: ["/watches/fp-01-silver-1.jpg", "/watches/fp-01-silver-2.jpg"],
+      },
+      {
+        id: "blue",
+        name: "أزرق محيطي",
+        colorHex: "#0E2D52",
+        images: ["/watches/fp-01-blue-1.jpg", "/watches/fp-01-blue-2.jpg"],
+      },
+    ],
     specs: {
       movement: "ماكينة كوارتز يابانية دقيقة",
       caseSize: "٤١ مم",
@@ -77,15 +65,35 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-02",
     code: "FP-02",
     name: "كورونوغراف ليجند جولد",
+    brand: "رولكس",
     price: 1650,
     originalPrice: 2450,
+    isAvailable: true,
     category: "luxury",
     strapType: "steel",
-    dialColor: "أخضر زمردي مع ذهبي",
-    image: "/watches/watch-2.jpg",
     badge: "إصدار حصري",
     description:
-      "مزيج ملكي بين الذهب الفاخر والمينا الزمردية العميقة مع عدادات كرونوغراف تفصيلية لمظهر واثق في المناسبات.",
+      "مزيج ملكي بين الذهب الفاخر والمينا الزمردية العميقة مع عدادات كرونوغراف تفصيلية لمظهر واثق في المناسبات الرسمية.",
+    colors: [
+      {
+        id: "gold",
+        name: "ذهبي ملكي",
+        colorHex: "#C3A055",
+        images: ["/watches/fp-02-gold-1.jpg", "/watches/fp-02-gold-2.jpg"],
+      },
+      {
+        id: "green",
+        name: "أخضر زمردي",
+        colorHex: "#163C2A",
+        images: ["/watches/fp-02-green-1.jpg", "/watches/fp-02-green-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "أسود في ذهبي",
+        colorHex: "#18191E",
+        images: ["/watches/fp-02-black-1.jpg", "/watches/fp-02-black-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز كرونوغراف نشط",
       caseSize: "٤٢ مم",
@@ -99,15 +107,35 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-03",
     code: "FP-03",
     name: "دايفماستر مارينا بلو",
+    brand: "رولكس",
     price: 1390,
     originalPrice: 1990,
+    isAvailable: true,
     category: "sport",
     strapType: "steel",
-    dialColor: "أزرق محيطي",
-    image: "/watches/watch-3.jpg",
     badge: "الأعلى تقييماً",
     description:
       "طابع بحري رياضي أنيق مع إطار سيراميك دوار ومؤشرات مضيئة في الظلام، مثالية للارتداء اليومي والعمل.",
+    colors: [
+      {
+        id: "blue",
+        name: "أزرق مارينا",
+        colorHex: "#0E2D52",
+        images: ["/watches/fp-03-blue-1.jpg", "/watches/fp-03-blue-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "أسود ديب دايفر",
+        colorHex: "#18191E",
+        images: ["/watches/fp-03-black-1.jpg", "/watches/fp-03-black-2.jpg"],
+      },
+      {
+        id: "green",
+        name: "أخضر هولك",
+        colorHex: "#163C2A",
+        images: ["/watches/fp-03-green-1.jpg", "/watches/fp-03-green-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز ياباني عالي الاعتمادية",
       caseSize: "٤٠ مم",
@@ -121,15 +149,35 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-04",
     code: "FP-04",
     name: "أويستر سيلفر كلاسيك",
+    brand: "رولكس",
     price: 1290,
     originalPrice: 1850,
+    isAvailable: true,
     category: "classic",
     strapType: "steel",
-    dialColor: "فضي مصقول أشعة الشمس",
-    image: "/watches/watch-4.jpg",
     badge: "كلاسيك راقي",
     description:
       "البساطة المطلقة والذوق الرفيع. مينا فضية ناصعة مع إطار محزز أنيق وتاريخ مكبر عند مؤشر الثالثة.",
+    colors: [
+      {
+        id: "silver",
+        name: "فضي ناصع",
+        colorHex: "#D7DAE0",
+        images: ["/watches/fp-04-silver-1.jpg", "/watches/fp-04-silver-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "أسود كلاسيك",
+        colorHex: "#18191E",
+        images: ["/watches/fp-04-black-1.jpg", "/watches/fp-04-black-2.jpg"],
+      },
+      {
+        id: "blue",
+        name: "أزرق ثلجي",
+        colorHex: "#0E2D52",
+        images: ["/watches/fp-04-blue-1.jpg", "/watches/fp-04-blue-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز دقيق مع نافذة تاريخ",
       caseSize: "٣٩ مم",
@@ -143,15 +191,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-05",
     code: "FP-05",
     name: "سوبرين شادو بلاك إديشن",
+    brand: "أوميغا",
     price: 1550,
     originalPrice: 2200,
+    isAvailable: false,
     category: "sport",
     strapType: "rubber",
-    dialColor: "أسود كربوني مطفي",
-    image: "/watches/watch-5.jpg",
-    badge: "إطلالة رياضية",
+    badge: "نفدت الكمية مؤقتاً",
     description:
       "إطلالة رياضية داكنة وجريئة بسوار سيليكون مرن عالي الجودة يقاوم العرق ومناسب للتمارين والطلعات الكاجوال.",
+    colors: [
+      {
+        id: "black",
+        name: "أسود كربوني مطفي",
+        colorHex: "#18191E",
+        images: ["/watches/fp-05-black-1.jpg", "/watches/fp-05-black-2.jpg"],
+      },
+      {
+        id: "gray",
+        name: "رمادي معدني",
+        colorHex: "#8A8478",
+        images: ["/watches/fp-05-gray-1.jpg", "/watches/fp-05-gray-2.jpg"],
+      },
+    ],
     specs: {
       movement: "ماكينة كرونوغراف دقيقة متعددة الوظائف",
       caseSize: "٤٣ مم",
@@ -165,15 +227,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-06",
     code: "FP-06",
     name: "إيليجانس ليذر بروان",
+    brand: "تيسو",
     price: 1190,
     originalPrice: 1750,
+    isAvailable: true,
     category: "classic",
     strapType: "leather",
-    dialColor: "أبيض عاجي دافئ",
-    image: "/watches/watch-6.jpg",
     badge: "كلاسيك رسمي",
     description:
       "خيار البدلات والملابس الرسمية الأول. سمك نحيف للغاية مع جلد طبيعي بني منقوش بنمط جلد التمساح الراقي.",
+    colors: [
+      {
+        id: "brown",
+        name: "جلد بني كلاسيك",
+        colorHex: "#6E4426",
+        images: ["/watches/fp-06-brown-1.jpg", "/watches/fp-06-brown-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "جلد أسود فاخر",
+        colorHex: "#18191E",
+        images: ["/watches/fp-06-black-1.jpg", "/watches/fp-06-black-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز فائق النحافة",
       caseSize: "٤٠ مم (سمك ٨ مم)",
@@ -187,15 +263,35 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-07",
     code: "FP-07",
     name: "نوتيلوس ستيل كحلي",
+    brand: "باتيك فيليب",
     price: 1580,
     originalPrice: 2350,
+    isAvailable: true,
     category: "luxury",
     strapType: "steel",
-    dialColor: "كحلي متدرج رائع",
-    image: "/watches/watch-7.jpg",
     badge: "تصميم أيقوني",
     description:
       "تصميم أيقوني حائز على إعجاب عشاق الساعات الفخمة حول العالم، إطار بيضاوي متناسق ومينا مضلعة أفقياً بتدرج لوني ساحر.",
+    colors: [
+      {
+        id: "blue",
+        name: "كحلي متدرج",
+        colorHex: "#0E2D52",
+        images: ["/watches/fp-07-blue-1.jpg", "/watches/fp-07-blue-2.jpg"],
+      },
+      {
+        id: "gray",
+        name: "رمادي معدني",
+        colorHex: "#8A8478",
+        images: ["/watches/fp-07-gray-1.jpg", "/watches/fp-07-gray-2.jpg"],
+      },
+      {
+        id: "gold",
+        name: "إطار ذهبي",
+        colorHex: "#C3A055",
+        images: ["/watches/fp-07-gold-1.jpg", "/watches/fp-07-gold-2.jpg"],
+      },
+    ],
     specs: {
       movement: "حركة كوارتز دقيقة وموثوقة",
       caseSize: "٤٠.٥ مم",
@@ -209,15 +305,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-08",
     code: "FP-08",
     name: "كاريرا سبييدستر فضي",
+    brand: "تاغ هوير",
     price: 1480,
     originalPrice: 2100,
+    isAvailable: true,
     category: "sport",
     strapType: "steel",
-    dialColor: "فضي مع عقارب زرقاء",
-    image: "/watches/watch-8.jpg",
     badge: "سباق ورياضة",
     description:
       "روح السباقات الأوروبية بتفاصيل رياضية دقيقة مع عقارب زرقاء ميتاليك تضفي لمسة حيوية وفريدة على معصمك.",
+    colors: [
+      {
+        id: "silver",
+        name: "فضي مع أزرق",
+        colorHex: "#D7DAE0",
+        images: ["/watches/fp-08-silver-1.jpg", "/watches/fp-08-silver-2.jpg"],
+      },
+      {
+        id: "blue",
+        name: "أزرق كامل",
+        colorHex: "#0E2D52",
+        images: ["/watches/fp-08-blue-1.jpg", "/watches/fp-08-blue-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز سبورت متعدد العدادات",
       caseSize: "٤٢ مم",
@@ -231,15 +341,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-09",
     code: "FP-09",
     name: "أولدموني روز جولد آند بلاك",
+    brand: "كارتييه",
     price: 1690,
     originalPrice: 2500,
+    isAvailable: true,
     category: "luxury",
     strapType: "leather",
-    dialColor: "أسود عميق مع إطار روز جولد",
-    image: "/watches/watch-9.jpg",
     badge: "ستايل أولد موني",
     description:
       "تجسيد لمعنى الفخامة الهادئة (Old Money). حزام جلد طبيعي أسود فاخر مع هيكل بلون الذهب الوردي اللامع.",
+    colors: [
+      {
+        id: "rose-gold",
+        name: "روز جولد وأسود",
+        colorHex: "#B97869",
+        images: ["/watches/fp-09-rose-gold-1.jpg", "/watches/fp-09-rose-gold-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "أسود ملكي كامل",
+        colorHex: "#18191E",
+        images: ["/watches/fp-09-black-1.jpg", "/watches/fp-09-black-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز ياباني عالي الجودة",
       caseSize: "٤١ مم",
@@ -253,15 +377,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-10",
     code: "FP-10",
     name: "سيراميك بيبسي سبورت",
+    brand: "رولكس",
     price: 1520,
     originalPrice: 2250,
+    isAvailable: false,
     category: "sport",
     strapType: "steel",
-    dialColor: "أسود مع إطار أزرق وأحمر",
-    image: "/watches/watch-10.jpg",
-    badge: "المفضلة لدى الشباب",
+    badge: "نفدت الكمية مؤقتاً",
     description:
       "الإطار الخزفي الشهير بلوني الأزرق والأحمر الكلاسيكي، مع عقرب إضافي وعلامات مضيئة فائقة السطوع.",
+    colors: [
+      {
+        id: "blue",
+        name: "بيبسي أزرق وأحمر",
+        colorHex: "#0E2D52",
+        images: ["/watches/fp-10-blue-1.jpg", "/watches/fp-10-blue-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "باتمان أزرق وأسود",
+        colorHex: "#18191E",
+        images: ["/watches/fp-10-black-1.jpg", "/watches/fp-10-black-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز مع ميزة قراءة التوقيت",
       caseSize: "٤٠ مم",
@@ -275,15 +413,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-11",
     code: "FP-11",
     name: "مون فيز كلاسيك وايت",
+    brand: "باتيك فيليب",
     price: 1350,
     originalPrice: 1950,
+    isAvailable: true,
     category: "classic",
     strapType: "leather",
-    dialColor: "أبيض مع نافذة أطوار القمر",
-    image: "/watches/watch-11.jpg",
     badge: "لمسة فنية",
     description:
       "لمسة رومانسية فنية مع نافذة تجسد أطوار القمر وأرقام رومانية كلاسيكية محفورة بدقة بالغة.",
+    colors: [
+      {
+        id: "cream",
+        name: "عاجي كلاسيك",
+        colorHex: "#F2ECE0",
+        images: ["/watches/fp-11-cream-1.jpg", "/watches/fp-11-cream-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "أسود قمري",
+        colorHex: "#18191E",
+        images: ["/watches/fp-11-black-1.jpg", "/watches/fp-11-black-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز مع مؤشر أطوار القمر وتاريخ",
       caseSize: "٤٠ مم",
@@ -297,15 +449,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-12",
     code: "FP-12",
     name: "ماستربيس كحلي في ذهبي",
+    brand: "أوديمار بيغيه",
     price: 1620,
     originalPrice: 2380,
+    isAvailable: true,
     category: "luxury",
     strapType: "steel",
-    dialColor: "أزرق ملكي مع لمسات ذهبية",
-    image: "/watches/watch-12.jpg",
     badge: "فخامة استثنائية",
     description:
       "تدرج لوني بديع يجمع درجات الباليت الكحلية مع الفولاذ والذهب ليعكس حضوراً قوياً ولا ينسى في أي مناسبة.",
+    colors: [
+      {
+        id: "gold",
+        name: "أزرق مع ذهبي (Two-Tone)",
+        colorHex: "#C3A055",
+        images: ["/watches/fp-12-gold-1.jpg", "/watches/fp-12-gold-2.jpg"],
+      },
+      {
+        id: "blue",
+        name: "أزرق ملكي كامل",
+        colorHex: "#0E2D52",
+        images: ["/watches/fp-12-blue-1.jpg", "/watches/fp-12-blue-2.jpg"],
+      },
+    ],
     specs: {
       movement: "ماكينة يابانية معتمدة",
       caseSize: "٤١ مم",
@@ -319,15 +485,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-13",
     code: "FP-13",
     name: "أفياتور بيلوت ستيل",
+    brand: "آي دبليو سي",
     price: 1380,
     originalPrice: 1980,
+    isAvailable: true,
     category: "sport",
     strapType: "steel",
-    dialColor: "رمادي معدني (Warm Gray)",
-    image: "/watches/watch-13.jpg",
     badge: "تصميم طيارين",
     description:
       "مستوحاة من ساعات قمرة قيادة الطائرات الكلاسيكية، أرقام واضحة سهلة القراءة مع عقارب عريضة مكسوة بمادة مضيئة.",
+    colors: [
+      {
+        id: "gray",
+        name: "رمادي طيارين",
+        colorHex: "#8A8478",
+        images: ["/watches/fp-13-gray-1.jpg", "/watches/fp-13-gray-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "أسود نايت فيجن",
+        colorHex: "#18191E",
+        images: ["/watches/fp-13-black-1.jpg", "/watches/fp-13-black-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز دقيق عالي التحمل",
       caseSize: "٤٢ مم",
@@ -341,15 +521,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-14",
     code: "FP-14",
     name: "دايتونا ريسينغ وايت أند بلاك",
+    brand: "رولكس",
     price: 1720,
     originalPrice: 2550,
+    isAvailable: true,
     category: "sport",
     strapType: "steel",
-    dialColor: "باندا (أبيض مع دوائر سوداء)",
-    image: "/watches/watch-14.jpg",
     badge: "ساعة الباندا الأيقونية",
     description:
       "التصميم الأسطوري الملقب بـ (Panda)، مينا بيضاء مع دوائر سوداء ثلاثية وتاكيميتر لقياس السرعة على الإطار.",
+    colors: [
+      {
+        id: "silver",
+        name: "باندا أبيض وأسود",
+        colorHex: "#D7DAE0",
+        images: ["/watches/fp-14-silver-1.jpg", "/watches/fp-14-silver-2.jpg"],
+      },
+      {
+        id: "black",
+        name: "ريفيرس باندا أسود",
+        colorHex: "#18191E",
+        images: ["/watches/fp-14-black-1.jpg", "/watches/fp-14-black-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز كرونوغراف نشط بالكامل",
       caseSize: "٤٠ مم",
@@ -363,15 +557,29 @@ export const WATCHES_DATA: Watch[] = [
     id: "fp-15",
     code: "FP-15",
     name: "فينتاج كلاسيك سليم",
+    brand: "كارتييه",
     price: 1250,
     originalPrice: 1800,
+    isAvailable: true,
     category: "classic",
     strapType: "leather",
-    dialColor: "كريمي عتيق (Cream Vintage)",
-    image: "/watches/watch-15.jpg",
     badge: "إصدار عتيق",
     description:
       "تصميم يستحضر أناقة الخمسينيات الكلاسيكية، مينا بلون كريمي هادئ وعقارب رفيعة مع حزام جلد طبيعي ناعم.",
+    colors: [
+      {
+        id: "cream",
+        name: "كريمي عتيق",
+        colorHex: "#F2ECE0",
+        images: ["/watches/fp-15-cream-1.jpg", "/watches/fp-15-cream-2.jpg"],
+      },
+      {
+        id: "brown",
+        name: "بني دافئ",
+        colorHex: "#6E4426",
+        images: ["/watches/fp-15-brown-1.jpg", "/watches/fp-15-brown-2.jpg"],
+      },
+    ],
     specs: {
       movement: "كوارتز فائق الدقة والنحافة",
       caseSize: "٣٨.٥ مم",
@@ -382,4 +590,3 @@ export const WATCHES_DATA: Watch[] = [
     },
   },
 ];
-

@@ -11,14 +11,14 @@ export function AnnouncementBar() {
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="font-semibold text-white">معاينة وفحص مجاني قبل الدفع:</span>
           <span className="text-cream/90">
-            افتح الشحنة وعاين ساعتك وتأكد منها مع المندوب قبل دفع أي مليم.
+            افتح الشحنة وافحص ساعتك وتأكد منها مع المندوب قبل سداد أي مبلغ.
           </span>
         </div>
 
         <div className="hidden md:flex items-center gap-4 text-cream-dark text-xs">
-          <span>شحن سريع لكافة محافظات مصر</span>
+          <span>التوصيل يتم خلال أسبوع لكافة محافظات مصر</span>
           <span className="opacity-40">•</span>
-          <span>تصوير واقعي على الإيد ١٠٠٪</span>
+          <span>دفع نقداً عند الاستلام</span>
         </div>
       </div>
     </aside>
@@ -26,4 +26,3 @@ export function AnnouncementBar() {
 }
 
 export default AnnouncementBar;
-
