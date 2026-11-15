@@ -1,7 +1,8 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { WATCHES_DATA } from "@/data/watches";
-import WatchDetailsView from "@/components/watch-details-view";
+import { WatchDetailsView } from "@/components";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -69,7 +70,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function WatchPage({ params }: PageProps) {
+async function WatchContent({ params }: PageProps) {
   const { id } = await params;
   const watch = WATCHES_DATA.find((w) => w.id === id);
 
@@ -83,4 +84,43 @@ export default async function WatchPage({ params }: PageProps) {
   ).slice(0, 4);
 
   return <WatchDetailsView watch={watch} relatedWatches={relatedWatches} />;
+}
+
+function WatchDetailsSkeleton() {
+  return (
+    <div className="min-h-screen bg-cream/20 py-8 sm:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-pulse">
+        {/* Breadcrumb skeleton */}
+        <div className="h-4 w-32 bg-cream-dark/60 rounded mb-8" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Gallery skeleton */}
+          <div className="space-y-4">
+            <div className="aspect-[4/5] w-full bg-cream-dark/50 rounded-3xl" />
+            <div className="flex gap-3">
+              <div className="w-20 h-24 bg-cream-dark/40 rounded-xl" />
+              <div className="w-20 h-24 bg-cream-dark/40 rounded-xl" />
+            </div>
+          </div>
+
+          {/* Details skeleton */}
+          <div className="space-y-6">
+            <div className="h-6 w-24 bg-cream-dark/50 rounded-full" />
+            <div className="h-10 w-3/4 bg-cream-dark/50 rounded-lg" />
+            <div className="h-4 w-40 bg-cream-dark/40 rounded" />
+            <div className="h-24 w-full bg-cream-dark/40 rounded-2xl" />
+            <div className="h-14 w-full bg-cream-dark/50 rounded-2xl" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function WatchPage({ params }: PageProps) {
+  return (
+    <Suspense fallback={<WatchDetailsSkeleton />}>
+      <WatchContent params={params} />
+    </Suspense>
+  );
 }
